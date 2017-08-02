@@ -1,20 +1,19 @@
-class IGameEngine{
+interface IGameEngine{
 
-    evaluateUserInput(){
+    evaluateUserInput();
         //validate user input
-    }
 
-    playerAction(){
+    playerAction();
         //take action based on user input
-    }
+    
 
-    evaluateWinCondition(){
+    evaluateWinCondition();
         //did the player win based on the last move
-    }
+    
 
-    computerPlayerAction(){
+    computerPlayerAction();
         //decision logic for computer player
-    }
+    
     
 
 
