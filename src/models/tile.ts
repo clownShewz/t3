@@ -1,4 +1,4 @@
-class tile{
+export class tile{
      
     _value: string;
     _row:number;

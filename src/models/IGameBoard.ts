@@ -1,7 +1,9 @@
- interface IGameBoard {
-    type:string;
-    board: tile[];
+ export interface IGameBoard {
     
+    type:string;
+    rows:number;
+    cols:number;
+    board:any[];
     
     drawBoard();
 

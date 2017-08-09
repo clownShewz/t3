@@ -1,4 +1,10 @@
-class game {
+import { IGameBoard } from './IGameBoard';
+import { IGameEngine } from './IGameEngine';
+import { player } from './player';
+import { tile } from './tile';
+
+
+export class Game {
 
     activePlayer:player;
 
@@ -12,10 +18,19 @@ class game {
 
     type: string; //enum
 
-    constructor (options: IGameOptions){
-        this.players = options.player;
-        this.engine = options.engine;
-        this.setDefaultActivePlayer();
+    constructor (engine:IGameEngine){
+        this.engine = engine;
+    }
+
+    initializePlayers(newPlayers:string[]){
+        newPlayers.map((n,i)=>{
+            let newPlayer = new player(i, n, true)
+            this.players.push(newPlayer);
+        })
+    }
+
+    setPlayerCount(){
+        this.engine.getDefaultPlayerCount();
     }
 
     setDefaultActivePlayer(){
@@ -40,25 +55,14 @@ class game {
     }
 
     addPlayer(playerNum: number, name:string, tokenType:string, human:boolean){
-        let newPlayer:player = new player(playerNum, name, tokenType, human);
+        let newPlayer:player = new player(playerNum, name, human);
         this.players.push(newPlayer);
     }
 
     getBoard(){
-        return this.board;
+        return this.engine.board;
     }
 
-    setBoard(type:string){
-        let board = this.createBoard(type);
-    }
-
-    createBoard(type: string){
-        switch (type) {
-            case "ticTacToe":
-                return new ticTacToeBoard();
-            default: null
-        }
-    }
 
     playGame(){
         //whos'turn? 

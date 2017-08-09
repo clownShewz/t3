@@ -1,18 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppBoardComponent } from './app-board/app-board.component';
-import { AppSquareComponent } from './app-square/app-square.component';
+import { AppGameComponent } from './app-game/app-game.component';
+import { AppTileComponent } from './app-tile/app-tile.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AppBoardComponent,
-    AppSquareComponent
+    AppGameComponent,
+    AppTileComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

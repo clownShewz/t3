@@ -1,4 +1,4 @@
-class player{
+export class player{
 
     playerNo: number;
 
@@ -10,12 +10,20 @@ class player{
 
     isHuman: boolean;
 
-    constructor( myNumber: number, myName:string, myTokenSelection:string, human:boolean){
+    constructor( playerNo:number, myName: string,human:boolean){
         this.name = myName;
-        this.tokenTypeSelection = myTokenSelection;
-        this.gamesWon = 0;
         this.isHuman = human;
+        this.gamesWon = 0;
     }
+
+    settokenTypeSelection(tokenType:string){
+        this.tokenTypeSelection = tokenType;
+    }
+
+    incrementGamesWon(){
+        this.gamesWon +=1;
+    }
+
 
 
 }

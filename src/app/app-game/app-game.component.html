@@ -1,0 +1,22 @@
+
+<p>
+  Would you like to play a game?
+</p> 
+<br>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select Game..
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+    <button class="dropdown-item" type="button" (click)="initializeGame('TicTacToe')">TicTacToe</button>
+    <button class="dropdown-item" type="button">Connect Four</button>
+  </div>
+</div>
+<div *ngIf="engine">
+  <label class="center-block">Player One: 
+    <input class="form-control" [formControl]="playerOne"/>
+  </label>
+   <label class="center-block">Player Two: 
+    <input class="form-control" [formControl]="playerTwo"/>
+  </label>
+</div>
