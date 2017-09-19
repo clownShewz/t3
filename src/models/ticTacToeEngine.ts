@@ -1,7 +1,7 @@
 import { IGameEngine } from '../models/IGameEngine';
 import { ticTacToeBoard } from '../models/ticTacToeBoard';
 
-export class TicTacToeGameEngine implements IGameEngine{
+export class ticTacToeGameEngine implements IGameEngine{
     private defaultPlayerCount:number = 2;
     name:'TicTacToe';
     board:ticTacToeBoard;

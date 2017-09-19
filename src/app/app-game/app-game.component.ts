@@ -1,67 +1,62 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Game } from '../../models/game';
-import { TicTacToeGameEngine } from '../../models/tictactoeengine';
-import { IGameBoard } from '../../models/IGameBoard';
-import { IGameEngine } from '../../models/IGameEngine';
-import { player } from '../../models/player';
-import { tile } from '../../models/tile';
+import { game } from '../../models/game';
+import { gameFactory } from '../../services/gameFactory';
+import { gameService } from '../../services/gameService';
 
 /////perhaps initialize with an array of game engines from an engine folder
 
 @Component({
   selector: 'app-game',
   templateUrl: './app-game.component.html',
-  styleUrls: ['./app-game.component.css']
+  styleUrls: ['./app-game.component.css'],
+  providers:[gameService]
 })
 export class AppGameComponent implements OnInit {
+  _game:game;
+  _gameFactory:gameFactory;
 
-  _Game:Game;
-  _Type:string;
-  _Engine:IGameEngine;
-  _Players:player[];
-
-   gameForm = new FormGroup({
+  gameForm = new FormGroup({
        playerOne: new FormControl(),
        playerTwo: new FormControl()
   })
 
-  constructor() { }
+  constructor(private _gameService:gameService) { 
+      _gameService.gameBoard$.subscribe(
 
-//get game selection
- setGameType(type:string){
-    this._Type = type;
-    this._Engine = this.getGameEngine();
+      )
+      console.log('we here yet?')
+      this._gameFactory = new gameFactory();
   }
+
+  async initialize(){
+    this.createGame();
+    this.pushBoard();
+  }
+
+  createGame(){
+    this._game = this._gameFactory.createGame('TicTacToe');
+    
+    if(this._game == null){alert('Invalid Game Selection');}
+    console.log('Game Type: ' + this._game.type);
+  }
+
+  pushBoard(){
+    this._gameService.announceGameBoard(this._game.board);
+  }
+
 //get player details
 setPlayers(){
   
 }
-//initialize game
-initializeGame(type:string){
-  this.setGameType(type);
-  this._Game = new Game(this._Engine);
-  console.log(this._Game.engine);
-}
 
-getGameEngine(){
-  switch(this._Type){
-      case 'TicTacToe':
-        return new TicTacToeGameEngine();
-      case 'ConnectFour':
-        break;
-      case 'Simon':
-        break;
-     default:
-        return null;
-  }
-}
 
 //draw board
 
 //play
 
   ngOnInit() {
+    this.pushBoard();
   }
 
 }

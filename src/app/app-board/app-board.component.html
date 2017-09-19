@@ -1,1 +1,12 @@
-<app-tile></app-tile>
+
+<div *ngIf="board.rows; else loading">
+    Board:
+    <div class="row" *ngFor="let row of board.rows | async">
+        <p>@</p>
+    <div class="col-md-3" *ngFor="let col of board.cols | async">
+        <p>!</p>  
+        <app-tile></app-tile>
+    </div>
+    </div>
+</div>
+<ng-template #loading> Loading Board... </ng-template>

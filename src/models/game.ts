@@ -3,8 +3,7 @@ import { IGameEngine } from './IGameEngine';
 import { player } from './player';
 import { tile } from './tile';
 
-
-export class Game {
+export class game {
 
     activePlayer:player;
 
@@ -18,9 +17,12 @@ export class Game {
 
     type: string; //enum
 
-    constructor (engine:IGameEngine){
+    constructor (engine:IGameEngine, board: IGameBoard, type){
         this.engine = engine;
+        this.board = board;
+        this.type = type;
     }
+    
 
     initializePlayers(newPlayers:string[]){
         newPlayers.map((n,i)=>{
