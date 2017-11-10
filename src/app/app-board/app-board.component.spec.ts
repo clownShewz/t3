@@ -22,4 +22,17 @@ describe('AppBoardComponent', () => {
   it('should be created', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a board object created', () => {
+    expect(this.board).toBeTruthy();
+  });
+
+  it('should have rows created', () => {
+    expect(this.board.rows).toBeTruthy();
+  });
+
+  it('should have columns created', () => {
+    expect(this.board.cols).toBeTruthy();
+  });
+
 });

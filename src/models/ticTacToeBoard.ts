@@ -1,42 +1,52 @@
 import {IGameBoard} from '../models/IGameBoard';
-import {tile} from '../models/tile';
+import {TicTacToeTile} from '../models/ticTacToeTile';
+import {Logger} from '../services/logger'
 
-export class ticTacToeBoard implements IGameBoard {
-    type:string;
-    rows:number;
-    cols:number;
-    board:any[];
+export class TicTacToeBoard implements IGameBoard {
+    type: string;
+    rows: number;
+    cols: number;
+    board: any[];
 
-    constructor(){
-        this.type = "tictactoe";
+    constructor() {
+        this.type = 'TicTacToe';
         this.rows = 3;
         this.cols = 3;
         this.board = this.drawBoard();
     }
 
-    drawBoard():any[]{
-        let retBoard:any[] = new Array(this.rows);
-        
+    drawBoard(): any[] {
+        let retBoard: any[] = [this.rows];
         console.log('drawing board...');
 
-        for(let i = 0; i < this.rows; i++){ 
-            retBoard.push(this.generateNewRow(i));
+        for (let i = 0; i < this.rows; i++) {
+            retBoard[i] = this.generateNewRow(i);
         }
         return retBoard;
     }
+    
+    getUsedTileCount(){
+        //foreach row 
+        //foreach tile in row count if tile.value > 0
+        return undefined;
+    };
 
-    generateNewRow(i:number):tile[]{
+    getOpenTileCount(){
+        let totalTileCount = this.rows * this.cols;
+        return totalTileCount - this.getUsedTileCount();
+    }
 
-        let row = new Array(this.cols);   
-        for (let j=0; j < this.cols; j++){
-                let newTile = this.getNewTile(i,j);
+    generateNewRow(i: number): TicTacToeTile[] {
+
+        const row = new Array();
+        for (let j = 0; j < this.cols; j++) {
+                const newTile = this.getNewTile(i, j);
                 row.push(newTile);
             }
         return row;
     }
 
-    getNewTile(rowIndex:number, colIndex:number):tile{
-        return new tile(rowIndex, colIndex);
+    getNewTile(rowIndex: number, colIndex: number): TicTacToeTile {
+        return new TicTacToeTile(rowIndex, colIndex);
     }
-
-}
+  }

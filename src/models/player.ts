@@ -1,6 +1,4 @@
-export class player{
-
-    playerNo: number;
+export class Player{
 
     name:string;
 
@@ -10,7 +8,7 @@ export class player{
 
     isHuman: boolean;
 
-    constructor( playerNo:number, myName: string,human:boolean){
+    constructor( myName: string,human:boolean){
         this.name = myName;
         this.isHuman = human;
         this.gamesWon = 0;

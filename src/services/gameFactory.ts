@@ -1,34 +1,32 @@
-import { IGameBoard } from '../Models/IGameBoard';
-import { IGameEngine } from '../Models/IGameEngine';
-import { ticTacToeBoard } from '../Models/ticTacToeBoard';
-import { ticTacToeGameEngine } from '../Models/ticTacToeEngine';
-import { game } from '../Models/game'; 
+import { TicTacToeBoard } from '../Models/ticTacToeBoard';
+import { gameEngineFactory } from 'services/gameEngineFactory';
+import { Game } from '../Models/game';
 
-export class gameFactory{
+export function gameFactory() {
 
-    engine : IGameEngine;
-    board : IGameBoard;
-    game : game;
-    
-    createGame = function(type:string){
-        
-        switch(type){
+    this.createGame = function(type: string): Game{
+
+        let newgame: Game = null;
+
+        switch (type) {
             case 'TicTacToe':
-                this.engine = new ticTacToeGameEngine();
-                this.board = new ticTacToeBoard();
-                this.game = new game(this.engine, this.board,'TicTacToe');
+                const engine = new gameEngineFactory().createGameEngine('TicTacToe');
+                const board = new TicTacToeBoard();
+                newgame = new Game(engine, board, 'TicTacToe');
+                // newgame.type = 'TicTacToe';
                 console.log('created new TicTacToe Game')
-            return this.game;
+
+            break;
 
             case 'ConnectFour':
-            
+
             break;
             case 'Simon':
-            
+
             break;
-        default:
-            return null;
+
             }
+
+        return newgame;
         }
     }
- 

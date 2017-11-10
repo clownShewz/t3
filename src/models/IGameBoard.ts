@@ -6,5 +6,9 @@
     board:any[];
     
     drawBoard();
+    
+    getUsedTileCount();
+
+    getOpenTileCount();
 
 }

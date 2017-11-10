@@ -1,49 +1,112 @@
 import { IGameEngine } from '../models/IGameEngine';
-import { ticTacToeBoard } from '../models/ticTacToeBoard';
+// import { TicTacToeBoard } from '../models/ticTacToeBoard';
+import { IGameBoard } from '../models/IGameBoard'
 
-export class ticTacToeGameEngine implements IGameEngine{
-    private defaultPlayerCount:number = 2;
-    name:'TicTacToe';
-    board:ticTacToeBoard;
+export class TicTacToeGameEngine implements IGameEngine {
+    private defaultPlayerCount: number = 2;
+    type: 'TicTacToe';
+    board: IGameBoard;
 
-    constructor(){
-        this.board = new ticTacToeBoard();
+    constructor() {
+
     }
 
-    getDefaultPlayerCount(){
+    getDefaultPlayerCount() {
         return this.defaultPlayerCount;
     }
 
-    getGameBoard(){
-        return this.board;
-    }
-    evaluateUserInput(){
-            console.log('evaluating input')
-     };
-        //validate user input
 
-    playerAction(){
+    evaluateUserInput(): boolean {
+        let passed = false;
+        console.log('evaluating input')
+        return passed;
+     };
+   // validate user input
+
+    playerAction() {
         console.log('starting player action')
 
     };
-        //take action based on user input
-    
+    // take action based on user input
 
-    evaluateWinCondition(){
+
+    evaluateWinCondition(): boolean {
+      let win = false;
         console.log('evaluating win condition')
-
+      return win;
     };
 
-    setGameBoard(){
-        this.board = new ticTacToeBoard();
+    setGameBoard(board: IGameBoard): void {
+        this.board = board;
     }
-        //did the player win based on the last move
-    
 
-    computerPlayerAction(){
+    continuePlay():boolean{
+        return false;
+    }
+        // did the player win based on the last move
+
+
+    computerPlayerAction() {
         console.log('computer player action')
 
     };
-        //decision logic for computer player
-    
+        // decision logic for computer player
+
+    findOpenCorners() {
+
+    };
+
+    findOpenCenter() {
+
+    };
+
+    isCornerOpen() {
+
+    }
+
+    isCenterOpen() {
+
+    }
+
+    checkForBlock() {
+
+    }
+
+    getNextAvailable() {
+
+    }
+
+    getCorner() {
+
+    }
+
+    getCenter() {
+
+    }
+
+    findNextSpace() {
+        if (this.checkForBlock) {
+            this.block();
+        }else if (this.isCenterOpen) {
+            this.moveCenter();
+        }else if (this.isCornerOpen) {
+            this.moveCorner();
+        }else {
+            this.moveNextAvailable();
+        }
+    }
+
+    moveCenter() {
+
+    }
+
+    moveCorner() {
+
+    }
+    block() {
+
+    }
+    moveNextAvailable() {
+
+    }
 }

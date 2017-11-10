@@ -1,15 +1,15 @@
 import { IGameBoard } from './IGameBoard';
 import { IGameEngine } from './IGameEngine';
-import { player } from './player';
-import { tile } from './tile';
+import { Player } from './player';
+import { IGameTile } from './IGameTile';
 
-export class game {
+export class Game {
 
-    activePlayer:player;
+    activePlayer:Player;
 
-    players: player[];
+    players: Player[];
 
-    tiles: tile[];
+    tiles: IGameTile[];
 
     board: IGameBoard;
 
@@ -24,15 +24,24 @@ export class game {
     }
     
 
-    initializePlayers(newPlayers:string[]){
-        newPlayers.map((n,i)=>{
-            let newPlayer = new player(i, n, true)
+    initializePlayers(newPlayers: string[]){
+        newPlayers.map((n)=>{
+            let newPlayer = new Player(n, true)
             this.players.push(newPlayer);
         })
     }
 
-    setPlayerCount(){
-        this.engine.getDefaultPlayerCount();
+    setPlayers(playerCount:number){
+        let newPlayers: string[]=[];
+        for(let i=0; i<playerCount; i++){
+            newPlayers.push('Player' + i.toString());
+        }   
+        
+        this.initializePlayers(newPlayers);
+    }
+
+    getPlayerCount(){
+        this.players.length;
     }
 
     setDefaultActivePlayer(){
@@ -57,7 +66,7 @@ export class game {
     }
 
     addPlayer(playerNum: number, name:string, tokenType:string, human:boolean){
-        let newPlayer:player = new player(playerNum, name, human);
+        let newPlayer:Player = new Player( name, human);
         this.players.push(newPlayer);
     }
 

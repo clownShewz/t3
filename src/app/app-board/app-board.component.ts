@@ -1,50 +1,42 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { gameService } from '../../services/gameService';
-import { Subscription } from 'rxjs/Subscription';
+import { GameBoardService } from '../../services/gameBoardService';
 import { IGameBoard } from '../../models/IGameBoard';
+import { Logger } from '../../services/logger';
+import { IGameTile } from '../../models/IGameTile'
 
 @Component({
   selector: 'app-board',
   templateUrl: './app-board.component.html',
-  styleUrls: ['./app-board.component.css']
+  styleUrls: ['./app-board.component.css'],
+  providers: [Logger]
 })
-export class AppBoardComponent implements OnDestroy {
-  
-  subscription:Subscription;
-  _gameBoard:IGameBoard;
-  board:any[];
-  colCount:number;
-  rowCount:number;
-  type:string;
-  cols:any[];
-  rows:any[];
-  showBoard:boolean;
 
-  boardObservable = new Subject<{board:any}>();
-  
-  constructor(private _gameService:gameService) { 
-    
+export class AppBoardComponent implements  OnInit {
+  @Input() gameBoard: IGameBoard;
+  showBoard: boolean;
+  boardDisplay: string;
+  boardRows: any= []
 
-      this.subscription = _gameService.gameBoard$.subscribe(
-        board => {
-            this._gameBoard = board;
-            this.board = board.board;
-            this.colCount = board.cols;
-            this.rowCount = board.rows;
-            this.type = board.type;
-            this.showBoard = true;
-            console.log('html:' + board);
-        }
-      )
+  constructor(private logger: Logger) {
   }
 
-  loadBoard(){
-    this.boardObservable.next();
-  }
- 
+  loadBoard() {
 
-  ngOnDestroy() {
-      this.subscription.unsubscribe();
-    }
+  }
+
+  tileClick(tile: IGameTile) {
+      this.updateGameBoard(tile);
+  }
+
+  updateGameBoard(tile: IGameTile) {
+      alert(JSON.stringify(tile));
+      // let boardRow:IGameBoard = this.gameBoard.board.splice(location.row,1);
+  }
+
+  ngOnInit() {
+    // this.boardDisplay = JSON.stringify(this.gameBoard.board);
+    // this.logger.log(this.gameBoard);
+  }
+
   }

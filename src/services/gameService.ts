@@ -1,18 +1,25 @@
-
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject'; 
-import { IGameBoard } from '../models/IGameBoard';
-import { IGameEngine } from '../models/IGameEngine';
-import { player } from '../models/player';
-import { tile } from '../models/tile';
+import { Injectable } from '@Angular/Core';
+import { Game } from '../Models/game';
+import { Logger } from 'services/logger';
+import { gameFactory } from 'services/gameFactory';
 
 @Injectable()
-export class gameService{
-    private gameBoardSource = new Subject<IGameBoard>();
-
-    gameBoard$ = this.gameBoardSource.asObservable();
-
-    announceGameBoard(Board:IGameBoard){
-        this.gameBoardSource.next(Board);
+export class GameService {
+  private game: Game
+  private logger;
+    constructor() {
+      this.logger = new Logger();
     }
+
+    getGame(type: string) {
+        this.game = new gameFactory().createGame(type);
+
+        if (!this.game) {
+              this.logger.error('Invalid Game Selection');
+            }else {
+            this.logger.log('Game Type: ' + this.game.type);
+        }
+        return this.game;
+    }
+
 }

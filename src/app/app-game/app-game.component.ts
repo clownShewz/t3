@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { game } from '../../models/game';
-import { gameFactory } from '../../services/gameFactory';
-import { gameService } from '../../services/gameService';
+import { Game } from '../../models/game';
+import { Logger } from '../../services/logger'
+import { GameService } from '../../services/gameService'
 
 /////perhaps initialize with an array of game engines from an engine folder
 
@@ -10,53 +10,50 @@ import { gameService } from '../../services/gameService';
   selector: 'app-game',
   templateUrl: './app-game.component.html',
   styleUrls: ['./app-game.component.css'],
-  providers:[gameService]
+  providers: [GameService, Logger]
 })
+
 export class AppGameComponent implements OnInit {
-  _game:game;
-  _gameFactory:gameFactory;
+  @Input() type: string;
+  @Input() playerCount: number;
+  game: Game;
+  selectedPlayerCount: boolean;
+  selectedGame: boolean;
+
 
   gameForm = new FormGroup({
        playerOne: new FormControl(),
        playerTwo: new FormControl()
   })
 
-  constructor(private _gameService:gameService) { 
-      _gameService.gameBoard$.subscribe(
+constructor( private logger: Logger, private gameService: GameService ) {
 
-      )
-      console.log('we here yet?')
-      this._gameFactory = new gameFactory();
+    }
+    // game service objects provides the instance of the game calling the game factory
+    // TODO: this process is a little wonky seems like you went off the deep end here- revisit
+ createGame(type: string) {
+      this.logger.log(type);
+
+      this.game = this.gameService.getGame(type);
+      if (this.game) {
+          this.selectedGame = true;
+          this.logger.log(this.game.board);
+    } else {
+    this.logger.error('invalid game selection');
   }
-
-  async initialize(){
-    this.createGame();
-    this.pushBoard();
-  }
-
-  createGame(){
-    this._game = this._gameFactory.createGame('TicTacToe');
-    
-    if(this._game == null){alert('Invalid Game Selection');}
-    console.log('Game Type: ' + this._game.type);
-  }
-
-  pushBoard(){
-    this._gameService.announceGameBoard(this._game.board);
-  }
-
-//get player details
-setPlayers(){
-  
+}
+// get player details
+setPlayers() {
+   //this.game.setPlayers(this.playerCount);
 }
 
-
-//draw board
-
-//play
+initialize(){
+  this.createGame(this.type);
+  //this.setPlayers();
+}
 
   ngOnInit() {
-    this.pushBoard();
+    this.initialize();
   }
 
 }
