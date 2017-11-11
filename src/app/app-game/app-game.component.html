@@ -1,0 +1,11 @@
+
+
+<div *ngIf="selectedGame">
+  <h4>
+    {{game.type}}
+  </h4>
+</div>
+
+<div *ngIf="selectedGame">
+    <app-board [gameBoard]="game.board"></app-board>
+</div>

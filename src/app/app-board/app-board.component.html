@@ -1,0 +1,11 @@
+
+<div *ngIf="gameBoard; else loading">
+    <div class="container">
+      <div class="row" *ngFor="let row of gameBoard.board">
+        <div class="col-xs-2"  *ngFor="let col of row" >
+            <app-tile [boardTile]="col" (tile)="tileClick($event)"></app-tile>
+        </div>
+      </div>
+    </div>
+</div>
+<ng-template #loading> Loading Board... </ng-template>
