@@ -1,27 +1,19 @@
-export class Player{
+import { IGameToken } from './IGameToken';
 
-    name:string;
+export interface IGamePlayer {
 
-    tokenTypeSelection: string;
+    name: string;
 
-    gamesWon:number;
+    token: IGameToken;
+
+    gamesWon: number;
 
     isHuman: boolean;
 
-    constructor( myName: string,human:boolean){
-        this.name = myName;
-        this.isHuman = human;
-        this.gamesWon = 0;
-    }
+    setGameToken(token: IGameToken)
 
-    settokenTypeSelection(tokenType:string){
-        this.tokenTypeSelection = tokenType;
-    }
+    getGameToken(): IGameToken
 
-    incrementGamesWon(){
-        this.gamesWon +=1;
-    }
-
-
+    incrementGamesWon()
 
 }

@@ -1,8 +1,11 @@
-export class TicTacToePlayer {
+import { IGamePlayer } from './IGamePlayer';
+import { IGameToken } from './IGameToken';
+
+export class TicTacToePlayer implements IGamePlayer {
 
     name: string;
 
-    tokenTypeSelection: string;
+    token: IGameToken;
 
     gamesWon: number;
 
@@ -14,8 +17,12 @@ export class TicTacToePlayer {
         this.gamesWon = 0;
     }
 
-    settokenTypeSelection(tokenType: string) {
-        this.tokenTypeSelection = tokenType;
+    setGameToken(token: IGameToken) {
+        this.token = token;
+    }
+
+    getGameToken(){
+       return this.token;
     }
 
     incrementGamesWon() {
