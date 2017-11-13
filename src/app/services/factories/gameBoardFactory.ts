@@ -1,7 +1,7 @@
-import { TicTacToeBoard } from '../models/ticTacToeBoard';
-import { IGameBoard } from '../models/IGameBoard';
+import { TicTacToeBoard } from '../../models/ticTacToeBoard';
+import { IGameBoard } from '../../models/IGameBoard';
 
-export function gameBoardFactory(){
+export function gameBoardFactory() {
 
     this.createGameBoard = function(type: string): IGameBoard{
         let newGameBoard: IGameBoard = null;

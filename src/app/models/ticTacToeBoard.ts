@@ -24,15 +24,25 @@ export class TicTacToeBoard implements IGameBoard {
         }
         return retBoard;
     }
-    
-    getUsedTileCount(){
-        //foreach row 
-        //foreach tile in row count if tile.value > 0
-        return undefined;
+
+    getUsedTileCount() : number {
+        // foreach row // foreach tile in row count if tile.value > 0
+        let count: number = 0;
+
+        this.board.map((r) => {
+          count = count + this.getValueCountFromRow(r);
+         })
+
+        return count;
     };
 
-    getOpenTileCount(){
-        let totalTileCount = this.rows * this.cols;
+   getValueCountFromRow(row: any []): number {
+       let valArray = row.filter(tile => tile.value ? tile.value : null );
+       return valArray.length;
+    }
+
+    getOpenTileCount(): number {
+        const totalTileCount = this.rows * this.cols;
         return totalTileCount - this.getUsedTileCount();
     }
 

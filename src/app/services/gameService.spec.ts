@@ -1,4 +1,4 @@
-import { GameService } from 'services/gameService';
+import { GameService } from '../services/gameService';
 
   it('should create a new game object', (() => {
     const game = new GameService().getGame('TicTacToe');

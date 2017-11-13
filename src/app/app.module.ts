@@ -7,6 +7,9 @@ import { AppBoardComponent } from './app-board/app-board.component';
 import { AppGameComponent } from './app-game/app-game.component';
 import { AppTileComponent } from './app-tile/app-tile.component';
 
+import { GameService } from './services/gameService' ;
+import { PlayerService } from './services/playerService' ;
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,7 @@ import { AppTileComponent } from './app-tile/app-tile.component';
     BrowserModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [GameService, PlayerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

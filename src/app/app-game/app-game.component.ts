@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Game } from '../../models/game';
-import { Logger } from '../../services/logger'
-import { GameService } from '../../services/gameService'
+import { Game } from '../models/game';
+import { Logger } from '../services/logger';
+import { GameService } from '../services/gameService';
+import { PlayerService } from '../services/playerService';
 
 /////perhaps initialize with an array of game engines from an engine folder
 
@@ -26,7 +27,7 @@ export class AppGameComponent implements OnInit {
        playerTwo: new FormControl()
   })
 
-constructor( private logger: Logger, private gameService: GameService ) {
+constructor( private logger: Logger, private gameService: GameService, private playerService: PlayerService) {
 
     }
     // game service objects provides the instance of the game calling the game factory
@@ -44,12 +45,22 @@ constructor( private logger: Logger, private gameService: GameService ) {
 }
 // get player details
 setPlayers() {
-   //this.game.setPlayers(this.playerCount);
+  for (let i = 0; i < this.playerCount; i++ ) {
+        (this.game.addNewPlayer(this.playerService.getPlayer(this.game.type)));
+  }
 }
 
-initialize(){
+setPlayerNames() {
+  for (let i = 0; i < this.playerCount; i++ ) {
+    this.game.players[i].name = 'Player ' + (i + 1);
+}
+}
+
+initialize() {
   this.createGame(this.type);
-  //this.setPlayers();
+  this.setPlayers();
+  this.setPlayerNames();
+  this.logger.log(JSON.stringify(this.game));
 }
 
   ngOnInit() {

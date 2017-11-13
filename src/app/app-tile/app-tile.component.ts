@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IGameTile } from '../../Models/IGameTile';
+import { IGameTile } from '../models/IGameTile';
 
 @Component({
   selector: 'app-tile',
