@@ -11,17 +11,26 @@ export class TicTacToePlayer implements IGamePlayer {
 
     isHuman: boolean;
 
-    constructor( myName: string, human: boolean) {
-        this.name = myName;
-        this.isHuman = human;
-        this.gamesWon = 0;
+    type: string;
+
+    constructor(type: string) {
+      this.type = type;
+      console.log('creating new ' + type + ' player')
+    }
+
+    setName(myName: string) {
+      this.name = myName;
+    }
+
+    setIsHuman(humanTF: boolean) {
+      this.isHuman = humanTF;
     }
 
     setGameToken(token: IGameToken) {
         this.token = token;
     }
 
-    getGameToken(){
+    getGameToken() {
        return this.token;
     }
 

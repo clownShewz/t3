@@ -1,7 +1,7 @@
 import { Injectable } from '@Angular/Core';
-import { Game } from '../Models/game';
-import { Logger } from 'services/logger';
-import { gameFactory } from 'services/gameFactory';
+import { Game } from '../models/game';
+import { Logger } from '../services/logger';
+import { gameFactory } from '../services/factories/gameFactory';
 
 @Injectable()
 export class GameService {

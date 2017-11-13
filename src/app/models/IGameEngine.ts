@@ -3,11 +3,15 @@ import { IGameBoard } from '../models/IGameBoard';
 export  interface IGameEngine {
     type: string;
     board: IGameBoard;
+
     getDefaultPlayerCount(): number;
     // return number of players
 
     setGameBoard(board: IGameBoard): void;
     // set game board property
+
+    takeTurn(): void;
+    // manage activities in a user turn
 
     evaluateUserInput(): boolean;
     // validate user input

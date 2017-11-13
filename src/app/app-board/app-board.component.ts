@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { GameBoardService } from '../../services/gameBoardService';
-import { IGameBoard } from '../../models/IGameBoard';
-import { Logger } from '../../services/logger';
-import { IGameTile } from '../../models/IGameTile'
+import { GameBoardService } from '../services/gameBoardService';
+import { IGameBoard } from '../models/IGameBoard';
+import { Logger } from '../services/logger';
+import { IGameTile } from '../models/IGameTile'
 
 @Component({
   selector: 'app-board',
@@ -31,7 +31,6 @@ export class AppBoardComponent implements  OnInit {
 
   updateGameBoard(tile: IGameTile) {
       alert(JSON.stringify(tile));
-      // let boardRow:IGameBoard = this.gameBoard.board.splice(location.row,1);
   }
 
   ngOnInit() {

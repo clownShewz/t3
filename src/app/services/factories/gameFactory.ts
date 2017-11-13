@@ -1,6 +1,6 @@
-import { TicTacToeBoard } from '../Models/ticTacToeBoard';
-import { gameEngineFactory } from 'services/gameEngineFactory';
-import { Game } from '../Models/game';
+import { TicTacToeBoard } from '../../models/ticTacToeBoard';
+import { gameEngineFactory } from './gameEngineFactory';
+import { Game } from '../../models/game';
 
 export function gameFactory() {
 

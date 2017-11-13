@@ -1,4 +1,4 @@
-import { gameBoardFactory } from 'services/gameBoardFactory';
+import { gameBoardFactory } from './gameBoardFactory';
 
 it('game board factory should create a game board instance', (() => {
   const gameBoard = new gameBoardFactory().createGameBoard('TicTacToe');

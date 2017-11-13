@@ -10,6 +10,8 @@ export interface IGamePlayer {
 
     isHuman: boolean;
 
+    type: string;
+
     setGameToken(token: IGameToken)
 
     getGameToken(): IGameToken

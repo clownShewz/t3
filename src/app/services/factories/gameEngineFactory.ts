@@ -1,5 +1,5 @@
-import {TicTacToeGameEngine} from '../models/ticTacToeEngine';
-import { IGameEngine } from '../Models/IGameEngine';
+import {TicTacToeGameEngine} from '../../models/ticTacToeEngine';
+import { IGameEngine } from '../../models/IGameEngine';
 
 
 export function gameEngineFactory() {

@@ -14,20 +14,20 @@ export class AppComponent {
   showPlayerSelection: boolean;
   selectionComplete: boolean;
 
-  constructor(){
+  constructor() {
     this.showGameSelection = true;
-    this.showPlayerSelection=false;
+    this.showPlayerSelection = false;
     this.selectionComplete = false;
   }
 
   onGameSelectionClick(gameSelection: string) {
     this.gameSelection = gameSelection;
-    this.showGameSelection = false; 
+    this.showGameSelection = false;
     this.showPlayerSelection = true;
     this.title = gameSelection;
   }
 
-  onPlayerSelectionClick(playerSelection: number){
+  onPlayerSelectionClick(playerSelection: number) {
       this.playerCount = playerSelection;
       this.showPlayerSelection = false;
       this.selectionComplete = true;

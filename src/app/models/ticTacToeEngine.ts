@@ -11,13 +11,16 @@ export class TicTacToeGameEngine implements IGameEngine {
 
     }
 
+    takeTurn() {
+    }
+
     getDefaultPlayerCount() {
         return this.defaultPlayerCount;
     }
 
 
     evaluateUserInput(): boolean {
-        let passed = false;
+        const passed = true;
         console.log('evaluating input')
         return passed;
      };
